@@ -38,20 +38,5 @@ public class Collecter : MonoBehaviour
         }
     }
 
-    // private void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.gameObject.CompareTag("Collectible"))
-    //     {
-    //         collectedObject = other.gameObject;
-    //         collectedList.Add(other.gameObject);
-    //         height += 0.61283f;
-    //         Debug.Log("Collecterdaki height : " + height);
-    //         
-    //         collectedObject.tag = "Collected";
-    //         collectedObject.transform.parent = player.transform;
-    //         collectedObject.transform.localPosition = new Vector3(transform.localPosition.x,height,transform.localPosition.z);
-    //         // collectedObject.GetComponent<Rigidbody>().isKinematic = false;
-    //         Debug.Log("Toplanan objenin yüksekliği"+collectedObject.transform.localPosition.y);
-    //     }
-    // }
+    
 }
