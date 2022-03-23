@@ -1,5 +1,7 @@
 
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class Collecter : MonoBehaviour
@@ -7,36 +9,29 @@ public class Collecter : MonoBehaviour
     private GameObject player;
     private GameObject collectedObject;
 
-    public static List<GameObject> collectedList ;
+    public static List<GameObject> collectedList;
 
-    public static float height = 0.911000013f;
+    public float height;
+
+    public  int numOfAddedItems = 0;
 
     private void Start()
     {
-        player = GameObject.Find("JohnLemon");
-        Debug.Log(player.name);
+        numOfAddedItems = 0;
+        height = transform.localPosition.y;
         collectedList = new List<GameObject>();
     }
-    private void Update()
+
+    public void AddNewStack(Transform newStackPos)
     {
-        gameObject.transform.localPosition = new Vector3(-0.0379f,0.911000013f,0.717000067f);
-        Debug.Log("Toplanan obje listesi : "+collectedList.Count);
-    }
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Collectible"))
-        {
-            collectedObject = other.gameObject;
-            collectedList.Add(other.gameObject);
-            height += 0.3659867f* 2;
-            Debug.Log("Collecterdaki height : " + height);
-            
-            collectedObject.tag = "Collected";
-            collectedObject.transform.parent = player.transform;
-            collectedObject.transform.localPosition = new Vector3(transform.localPosition.x,height,transform.localPosition.z);
-            Debug.Log("Toplanan objenin yüksekliği"+collectedObject.transform.localPosition.y);
-        }
+        newStackPos.DOJump(transform.position + new Vector3(-1.3f, .67f * numOfAddedItems, 0), 1.5f, 1, .4f).OnComplete(() =>
+            {
+                numOfAddedItems++;
+                newStackPos.SetParent(transform, true);
+                newStackPos.localPosition = new Vector3(0, .033f * numOfAddedItems, 0);
+                newStackPos.localRotation = Quaternion.identity;
+
+            });
     }
 
-    
 }
