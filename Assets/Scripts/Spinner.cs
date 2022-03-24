@@ -7,11 +7,6 @@ public class Spinner : MonoBehaviour
 {
     [SerializeField] private float turningSpeed;
 
-    private GameObject collectibles;
-
-    private List<GameObject> collectedList;
-
-
     private void Update()
     {
         transform.Rotate(new Vector3(0,1,0) * Time.deltaTime * turningSpeed,Space.World);

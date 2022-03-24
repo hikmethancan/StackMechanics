@@ -9,7 +9,7 @@ public class Collecter : MonoBehaviour
     private GameObject player;
     private GameObject collectedObject;
 
-    public static List<GameObject> collectedList;
+    public  List<GameObject> collectedList;
 
     public float height;
 
@@ -22,7 +22,7 @@ public class Collecter : MonoBehaviour
         collectedList = new List<GameObject>();
     }
 
-    public void AddNewStack(Transform newStackPos)
+    public void AddNewStack(Transform newStackPos,GameObject collectedCube)
     {
         newStackPos.DOJump(transform.position + new Vector3(-1.3f, .67f * numOfAddedItems, 0), 1.5f, 1, .4f).OnComplete(() =>
             {
@@ -30,7 +30,7 @@ public class Collecter : MonoBehaviour
                 newStackPos.SetParent(transform, true);
                 newStackPos.localPosition = new Vector3(0, .033f * numOfAddedItems, 0);
                 newStackPos.localRotation = Quaternion.identity;
-
+                collectedList.Add(collectedCube);
             });
     }
 
